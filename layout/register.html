@@ -1,7 +1,5 @@
 <!doctype html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -12,13 +10,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>ToDo</title>
+    <title>Register</title>
 </head>
 
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{/}">ToDo</a>
+    <a class="navbar-brand" href="#">ToDo</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,31 +26,39 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">List</a>
+                <a class="nav-link" href="@{/}">List</a>
             </li>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}">Login</a>
-            <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/register}">Register</a>
+        <form class="form-inline my-2 my-lg-0" action="#" method="post">
+            <button class="btn btn-outline-success my-2 my-sm-0">Logout</button>
         </form>
+        <div class="form-inline my-2 my-lg-0">
+            <a class="btn btn-outline-success my-2 mr-2 my-sm-0" href="#">Login</a>
+        </div>
     </div>
 </nav>
 
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <form>
+            <form action="#" method="post">
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" placeholder="Enter description">
+                    <label for="username">User name</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter user name">
+                    <small class="form-text text-danger" >Validation error</small>
                 </div>
                 <div class="form-group">
-                    <label for="target-date">Target date</label>
-                    <input type="date" class="form-control" id="target-date" >
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Password">
+                    <small class="form-text text-danger">Validation error</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group">
+                    <label for="repeatPassword">Repeat password</label>
+                    <input type="password" id="repeatPassword" class="form-control" placeholder="Repeat password">
+                    <small class="form-text text-danger">Validation error</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>
     </div>
@@ -69,5 +75,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 </body>
+
 </html>

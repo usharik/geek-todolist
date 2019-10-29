@@ -1,7 +1,5 @@
 <!doctype html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -12,13 +10,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>ToDo</title>
+    <title>ToDo list application</title>
 </head>
 
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{/}">ToDo</a>
+    <a class="navbar-brand" href="#">ToDo</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +26,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">List</a>
+                <a class="nav-link" href="#">List</a>
             </li>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}">Login</a>
-            <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/register}">Register</a>
+        <form class="form-inline my-2 my-lg-0" action="#" method="post">
+            <button class="btn btn-outline-success my-2 my-sm-0">Logout</button>
         </form>
     </div>
 </nav>
@@ -43,17 +39,36 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <form>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" placeholder="Enter description">
-                </div>
-                <div class="form-group">
-                    <label for="target-date">Target date</label>
-                    <input type="date" class="form-control" id="target-date" >
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <a class="btn btn-primary" href="/todo">Add Todo</a>
+        </div>
+
+        <div class="col-12">
+            <table class="table table-bordered my-2">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Target date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr hidden>
+                    <td class="text-center" colspan="5">No data</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Bootstrap 4 CDN and Starter Template</td>
+                    <td>Cristina</td>
+                    <td>01.01.2020</td>
+                    <td>
+                        <a class="btn btn-success" href="#"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -70,4 +85,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
