@@ -8,9 +8,6 @@ import ru.geekbrains.todolist.persist.repo.UserRepository;
 import ru.geekbrains.todolist.repr.UserRepr;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
-
-import static ru.geekbrains.todolist.security.Utils.getCurrentUser;
 
 @Service
 @Transactional
@@ -31,11 +28,5 @@ public class UserService {
         user.setUsername(userRepr.getUsername());
         user.setPassword(passwordEncoder.encode(userRepr.getPassword()));
         userRepository.save(user);
-    }
-
-    public Optional<Long> getCurrentUserId() {
-        return getCurrentUser()
-                .flatMap(userRepository::getUserByUsername)
-                .map(User::getId);
     }
 }

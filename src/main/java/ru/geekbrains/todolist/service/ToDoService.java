@@ -32,8 +32,8 @@ public class ToDoService {
                 .map(ToDoRepr::new);
     }
 
-    public List<ToDoRepr> findToDosByUserId(Long userId) {
-        return toDoRepository.findToDosByUserId(userId);
+    public List<ToDoRepr> findToDoByUser_Username(String username) {
+        return toDoRepository.findToDoByUser_Username(username);
     }
 
     public void save(ToDoRepr toDoRepr) {

@@ -10,22 +10,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.geekbrains.todolist.repr.ToDoRepr;
 import ru.geekbrains.todolist.service.ToDoService;
-import ru.geekbrains.todolist.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import static ru.geekbrains.todolist.security.Utils.getCurrentUser;
 
 @Controller
 public class TodoController {
 
     private ToDoService toDoService;
 
-    private UserService userService;
-
     @Autowired
-    public TodoController(ToDoService toDoService, UserService userService) {
+    public TodoController(ToDoService toDoService) {
         this.toDoService = toDoService;
-        this.userService = userService;
     }
 
     @GetMapping("")
@@ -35,8 +33,9 @@ public class TodoController {
 
     @GetMapping("/todo/all")
     public String allTodosPage(Model model) {
-        List<ToDoRepr> todos = toDoService.findToDosByUserId(userService.getCurrentUserId()
-                .orElseThrow(ResourceNotFoundException::new));
+        List<ToDoRepr> todos = getCurrentUser()
+                .map(toDoService::findToDoByUser_Username)
+                .orElseThrow(IllegalStateException::new);
         model.addAttribute("todos", todos);
         return "todoList";
     }
