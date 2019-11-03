@@ -1,7 +1,5 @@
 package ru.geekbrains.todolist.persist.entity;
 
-import ru.geekbrains.todolist.repr.ToDoRepr;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 

@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static ru.geekbrains.todolist.service.UserService.getCurrentUser;
+import static ru.geekbrains.todolist.security.Utils.getCurrentUser;
 
 @Service
 @Transactional

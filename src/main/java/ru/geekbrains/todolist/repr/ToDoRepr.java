@@ -23,6 +23,13 @@ public class ToDoRepr {
     public ToDoRepr() {
     }
 
+    public ToDoRepr(Long id, @NotEmpty String description, String username, @NotNull LocalDate targetDate) {
+        this.id = id;
+        this.description = description;
+        this.username = username;
+        this.targetDate = targetDate;
+    }
+
     public ToDoRepr(ToDo toDo) {
         this.id = toDo.getId();
         this.description = toDo.getDescription();

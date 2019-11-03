@@ -12,7 +12,8 @@ import java.util.List;
 @Repository
 public interface ToDoRepository extends CrudRepository<ToDo, Long> {
 
-    @Query("select new ru.geekbrains.todolist.repr.ToDoRepr(t) from ToDo t " +
+    @Query("select new ru.geekbrains.todolist.repr.ToDoRepr(t.id, t.description, t.user.username, t.targetDate) " +
+            "from ToDo t " +
             "where t.user.id = :userId")
     List<ToDoRepr> findToDosByUserId(@Param("userId") Long userId);
 }
