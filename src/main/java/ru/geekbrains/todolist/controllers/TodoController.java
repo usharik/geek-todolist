@@ -3,6 +3,7 @@ package ru.geekbrains.todolist.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import ru.geekbrains.todolist.repr.ToDoRepr;
 import ru.geekbrains.todolist.service.ToDoService;
 import ru.geekbrains.todolist.service.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -54,7 +56,12 @@ public class TodoController {
     }
 
     @PostMapping("/todo/create")
-    public String createTodoPost(@ModelAttribute("todo") ToDoRepr toDoRepr) {
+    public String createTodoPost(@ModelAttribute("todo") @Valid ToDoRepr toDoRepr,
+                                 BindingResult result) {
+        if (result.hasErrors()) {
+            return "todo";
+        }
+
         toDoService.save(toDoRepr);
         return "redirect:/";
     }
