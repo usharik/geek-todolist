@@ -33,7 +33,6 @@
         </ul>
 
         <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}">Login</a>
             <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
             <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/register}">Register</a>
         </form>
