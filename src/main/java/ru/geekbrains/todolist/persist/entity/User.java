@@ -1,6 +1,7 @@
 package ru.geekbrains.todolist.persist.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +16,13 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ToDo> todos;
 
     public User() {
     }
